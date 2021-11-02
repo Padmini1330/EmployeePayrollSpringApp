@@ -8,9 +8,12 @@ import com.bridgelabz.model.EmployeePayrollData;
 public interface IEmployeePayrollService 
 {
 	List<EmployeePayrollData> getEmployeePayrollData();
+
 	EmployeePayrollData getEmployeePayrollDataById(int employeeId);
+
 	EmployeePayrollData createEmployeePayrollData(EmployeePayrollDTO employeePayrollDTO);
-	EmployeePayrollData updateEmployeePayrollData(EmployeePayrollDTO employeePayrollDTO);
+
+	EmployeePayrollData updateEmployeePayrollData(int employeeId, EmployeePayrollDTO employeePayrollDTO);
 
 	void deleteEmployeePayrollData(int employeeId);
 }
