@@ -2,49 +2,62 @@ package com.bridgelabz.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bridgelabz.dto.EmployeePayrollDTO;
+import com.bridgelabz.dto.ResponseDTO;
 import com.bridgelabz.model.Employee;
+import com.bridgelabz.model.EmployeePayrollData;
 
 
 @RestController
 public class EmployeePayrollController 
 {
-	@RequestMapping(value = { "", "/", "/home" })
-	public ResponseEntity<String> sayHello() 
+	@RequestMapping(value = { "", "/", "/get" })
+	public ResponseEntity<ResponseDTO> getEmployeePayrollData() 
 	{
-		return new ResponseEntity<String>("Hello world!", HttpStatus.OK);
+		EmployeePayrollData employeePayrollData = new EmployeePayrollData(1, new EmployeePayrollDTO("Padmini", 1000000));
+		ResponseDTO response = new ResponseDTO("Success", employeePayrollData);
+		return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = { "/query" })
-	public String sayHi(@RequestParam(value = "fname", defaultValue = "Padmini") String fname,
-			@RequestParam(value = "lname", defaultValue = "Sharma") String lname)
+	@GetMapping("/get/{employeeId}")
+	public ResponseEntity<ResponseDTO> getEmployeePayrollDataById(@PathVariable int employeeId) 
 	{
-		return "Welcome" + fname + " " + lname;
+		EmployeePayrollData employeePayrollData = new EmployeePayrollData(1, new EmployeePayrollDTO("Padmini", 1000000));
+		ResponseDTO response = new ResponseDTO("Success", employeePayrollData);
+		return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
 	}
 
-	@GetMapping("/param/{name}")
-	public String parameterName(@PathVariable String name) 
+	@PostMapping("/create")
+	public ResponseEntity<ResponseDTO> createEmployeePayrollData(@RequestBody EmployeePayrollDTO employeePayrollDTO) 
 	{
-		return "Hi " + name;
+		EmployeePayrollData employeePayrollData = new EmployeePayrollData(1, employeePayrollDTO);
+		ResponseDTO response = new ResponseDTO("Success", employeePayrollData);
+		return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
 	}
 
-	@GetMapping("/post")
-	public String setUser(@RequestBody Employee employee) 
+	@PutMapping("/update")
+	public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@RequestBody EmployeePayrollDTO employeePayrollDTO) 
 	{
-		return "Hello " + employee.getFirstName() + " " + employee.getLastName();
+		EmployeePayrollData employeePayrollData = new EmployeePayrollData(1, employeePayrollDTO);
+		ResponseDTO response = new ResponseDTO("Success", employeePayrollData);
+		return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
 	}
 
-	@PutMapping("/put/{firstName}")
-	public String sayHelloPutMethod(@PathVariable String firstName,
-			@RequestParam(value = "lastName", defaultValue = "Sharma") String lastName) 
+	@DeleteMapping("/delete/{employeeId}")
+	public ResponseEntity<ResponseDTO> deleteEmployeePayrollData(@PathVariable int employeeId) 
 	{
-		return "Hello " + firstName + " " + lastName;
+		ResponseDTO response = new ResponseDTO("deleted", "deleted id:" + employeeId);
+		return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
 	}
 }
+
