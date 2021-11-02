@@ -23,10 +23,10 @@ public class EmployeePayrollController
 	}
 
 	@RequestMapping(value = { "/query" })
-	public String sayHi(@RequestParam(value = "fname", defaultValue = "vinay") String fname,
-			@RequestParam(value = "lname", defaultValue = "Hiremath") String lname)
+	public String sayHi(@RequestParam(value = "fname", defaultValue = "Padmini") String fname,
+			@RequestParam(value = "lname", defaultValue = "Sharma") String lname)
 	{
-		return "welcome to the world of " + fname + " " + lname;
+		return "Welcome" + fname + " " + lname;
 	}
 
 	@GetMapping("/param/{name}")
@@ -43,7 +43,7 @@ public class EmployeePayrollController
 
 	@PutMapping("/put/{firstName}")
 	public String sayHelloPutMethod(@PathVariable String firstName,
-			@RequestParam(value = "lastName", defaultValue = "Hiremath") String lastName) 
+			@RequestParam(value = "lastName", defaultValue = "Sharma") String lastName) 
 	{
 		return "Hello " + firstName + " " + lastName;
 	}
