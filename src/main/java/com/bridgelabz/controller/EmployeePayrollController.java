@@ -1,5 +1,6 @@
 package com.bridgelabz.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,11 +17,15 @@ import com.bridgelabz.dto.EmployeePayrollDTO;
 import com.bridgelabz.dto.ResponseDTO;
 import com.bridgelabz.model.Employee;
 import com.bridgelabz.model.EmployeePayrollData;
+import com.bridgelabz.service.IEmployeePayrollService;
 
 
 @RestController
 public class EmployeePayrollController 
 {
+	@Autowired
+	private IEmployeePayrollService employeePayrollService;
+	
 	@RequestMapping(value = { "", "/", "/get" })
 	public ResponseEntity<ResponseDTO> getEmployeePayrollData() 
 	{
