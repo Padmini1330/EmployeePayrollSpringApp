@@ -10,15 +10,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @SpringBootApplication
 @Slf4j
-@Data
 public class EmployeePayrollSpringAppApplication 
 {
 	public static void main(String[] args) 
 	{
 		  ApplicationContext context=SpringApplication.run(EmployeePayrollSpringAppApplication.class, args);
 		  
-		  log.info("Employee App Started in {} Environment"
-				  ,context.getEnvironment().getProperty("environment"));
+		  log.info("Employee App Started in {} Environment",context.getEnvironment().getProperty("environment"));
 	}
 
 }
