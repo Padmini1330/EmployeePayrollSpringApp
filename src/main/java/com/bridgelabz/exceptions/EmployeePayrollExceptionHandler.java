@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,6 +16,15 @@ import com.bridgelabz.dto.ResponseDTO;
 @ControllerAdvice
 public class EmployeePayrollExceptionHandler 
 {
+	
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	public ResponseEntity<ResponseDTO> handleHttpMessageNotReadableException(
+			HttpMessageNotReadableException exception) 
+	{
+		ResponseDTO response = new ResponseDTO("Exception while processing request,invalid date format", exception.getMessage());
+		return new ResponseEntity<ResponseDTO>(response, HttpStatus.BAD_REQUEST);
+	}
+	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ResponseDTO> handleMethodArgumentNotValidException(
 			MethodArgumentNotValidException exception) 
