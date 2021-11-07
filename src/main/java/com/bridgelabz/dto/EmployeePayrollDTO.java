@@ -10,9 +10,10 @@ import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import lombok.ToString;
+import lombok.Data;
 
-public @ToString class EmployeePayrollDTO 
+
+public @Data class EmployeePayrollDTO 
 {
 	@NotNull
 	@Pattern(regexp="^[A-Z]{1}[a-zA-Z\\s]{2,}$",message="Employee Name is Invalid!")
@@ -30,7 +31,7 @@ public @ToString class EmployeePayrollDTO
 	
 	@NotNull(message = "Start Date should not be Null")
 	
-	@PastOrPresent(message = "start date should be past or todays date")
+	@PastOrPresent(message = "Start date should be Past or Todays date")
 	public LocalDate startDate;
 
 	@NotNull(message = "Note cannot be Null")
