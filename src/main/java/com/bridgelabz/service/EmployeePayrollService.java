@@ -27,7 +27,7 @@ public class EmployeePayrollService implements IEmployeePayrollService
 	public EmployeePayrollData getEmployeePayrollDataById(int employeeId) 
 	{
 		return employeePayrollRepository.findById(employeeId)
-				.orElseThrow(() -> new EmployeePayrollException("Employee with id " + employeeId + " does'nt exists"));
+				.orElseThrow(() -> new EmployeePayrollException("Employee with id " + employeeId + " does'nt exist"));
 	}
 
 	@Override
@@ -49,8 +49,9 @@ public class EmployeePayrollService implements IEmployeePayrollService
 	public void deleteEmployeePayrollData(int employeeId) 
 	{
 		employeePayrollRepository.findById(employeeId)
-				.orElseThrow(() -> new EmployeePayrollException("Employee with id " + employeeId + " does'nt exists"));
+				.orElseThrow(() -> new EmployeePayrollException("Employee with id " + employeeId + " does'nt exist"));
 		employeePayrollRepository.deleteById(employeeId);
 	}
+
 
 }
